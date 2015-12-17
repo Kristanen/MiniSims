@@ -8,4 +8,4 @@ Peli on ruudukkopohjainen ja kaksiulotteinen. Ainakin aluksi hahmo ja tavarat ov
 Pelaaja
 
 ####Käyttäjän toiminnot:
-Mahdollisuus sisustaa huone ja seurata hahmon elämää huoneessa
+Mahdollisuus sisustaa huone ja seurata hahmon elämää huoneessa.

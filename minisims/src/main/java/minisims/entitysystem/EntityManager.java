@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package minisims.entitysystem;
 
-/**
- *
- * @author Hicks48
- */
+import java.util.HashMap;
+import java.util.Map;
+
 public class EntityManager {
     
     private static EntityManager gEntityManager;
@@ -18,7 +12,7 @@ public class EntityManager {
     }
     
     public static void shutDown() {
-        
+        // Doesn't need to do anything.
     }
     
     public static EntityManager get() {
@@ -30,7 +24,21 @@ public class EntityManager {
         return gEntityManager;
     }
     
+    private Map<String, Entity> entities;
+    
     private EntityManager() {
-        
+        this.entities = new HashMap<String, Entity>();
+    }
+    
+    public void addEntity(final Entity entity) {
+        this.entities.put(entity.getId(), entity);
+    }
+    
+    public Entity getEntity(final String id) {
+        return this.entities.get(id);
+    }
+    
+    public boolean removeEntity(final String id) {
+        return this.entities.remove(id) != null;
     }
 }

@@ -16,3 +16,6 @@ Rendering-systeemin aloitus, Circle-luokan toteutus
 
 **su 27.12.2015 1 h 20 min:**
 Jatkoa Rendering-systeemille, PoolTable-luokan aloitus, Ball-luokan toteutus
+
+**ma 28.12.2015 3 h 15 min:**
+Koodikatselmointi, Pit-konfiguraatio, PoolTable-luokan testaus, CollisionManager-luokan aloitus

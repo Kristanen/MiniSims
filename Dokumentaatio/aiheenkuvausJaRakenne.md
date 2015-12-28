@@ -1,14 +1,13 @@
 #Ohjelman kuvaus
-####Aihe: MiniSims
-MiniSimsissä pelaaja sisustaa huoneen. Huoneessa on yksi hahmo, joka voi käyttää huoneessa olevia tavaroita. Hahmo on autonominen ja toimii itsenäisesti pelaajasta riippumatta. Hahmoa ohjaavat sen tarpeet, kuten nälkä ja väsymys. Tavaroihin liittyy jokin toiminto, joka tyydyttää jonkin hahmon tarpeen.
+####Aihe: MiniPool
+MiniPool on yksinkertainen versio biljardista. MiniPoolissa pelaaja yrittää pussittaa palloja säätämällä lyönnin voimakkuutta ja suuntaa eli toisin sanoen valkoisen pallon lähtönopeutta ja -suuntaa. Valkoista palloa ei saa pussittaa, vaan sen avulla on tarkoitus pussittaa muita palloja. Peli päättyy, kun kaikki pallot valkoista lukuunottamatta on saatu pussitettua.
 
-Simulaatio on ruudukkopohjainen ja kaksiulotteinen. Ainakin aluksi hahmo ja tavarat ovat yksinkertaisia kappaleita, esimerkiksi neliöitä tai suorakulmioita. Se, miten huoneen sisustus toteutetaan, on vielä avoinna.
+Pelialusta on suorakulmion muotoinen, jonka vaakasuorat sivut ovat pystysuoria pidemmät. Pussit sijaitsevat suorakulmion kaikissa kulmissa sekä pitkien sivujen keskikohdissa.
 
 ####Käyttäjä:
 Pelaaja
 
 ####Käyttäjän toiminnot:
-Mahdollisuus sisustaa huone ja seurata hahmon elämää huoneessa.
-- hahmo liikkuu huoneessa
-- hahmo toimii autonomisesti
-- hahmo voi esimerkiksi syödä jääkaapista ruokaa, nukkua sängyssä ja katsoa televisiota
+- lyönnin voimakkuuden säätäminen
+- lyönnin suunnan säätäminen
+- pallon lyöminen

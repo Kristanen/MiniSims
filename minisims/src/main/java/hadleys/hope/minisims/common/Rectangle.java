@@ -1,4 +1,4 @@
-package minisims.common;
+package hadleys.hope.minisims.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,8 @@
-package minisims.entitysystem;
+package hadleys.hope.minisims.entitysystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EntityManager {
@@ -12,7 +14,7 @@ public class EntityManager {
     }
     
     public static void shutDown() {
-        // Doesn't need to do anything.
+        gEntityManager = null;
     }
     
     public static EntityManager get() {
@@ -36,6 +38,10 @@ public class EntityManager {
     
     public Entity getEntity(final String id) {
         return this.entities.get(id);
+    }
+    
+    public List<Entity> getAllEntities() {
+        return new ArrayList<Entity>(this.entities.values());
     }
     
     public boolean removeEntity(final String id) {

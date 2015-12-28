@@ -1,4 +1,4 @@
-package minisims.entitysystem;
+package hadleys.hope.minisims.entitysystem;
 
 
 public abstract class Entity {

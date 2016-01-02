@@ -7,6 +7,10 @@ import java.util.Objects;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
+/**
+ * Can be used to present rectangle shape.
+ * @author Krista Iltanen
+ */
 public class Rectangle {
     
     private RealMatrix pointA;

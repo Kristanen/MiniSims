@@ -19,3 +19,12 @@ Jatkoa Rendering-systeemille, PoolTable-luokan aloitus, Ball-luokan toteutus
 
 **ma 28.12.2015 3 h 15 min:**
 Koodikatselmointi, Pit-konfiguraatio, PoolTable-luokan testaus, CollisionManager-luokan aloitus
+
+**ti 29.12.2015 3 h:**
+Aktiivisen renderöinnin toteutus käyttäen kaksoisbufferointia, renderöitävien kappaleiden kirjanpidon siirto RenderinManagerista EntityManageriin, Entityiden update-metodi ja delta time
+
+**pe 1.1.2015 1 h 30 min:**
+Käyttöliittymä, törmäyksen havainnointi -kirjaston käyttöönottoa
+
+**la 2.1.2015 5h:**
+Käyttöliittymä, törmäyksen havainnointi -systeemin integrointia, Javadoc

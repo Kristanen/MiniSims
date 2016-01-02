@@ -1,11 +1,17 @@
 package hadleys.hope.minisims.renderingsystem;
 
+import hadleys.hope.minisims.Manager;
+import hadleys.hope.minisims.entitysystem.EntityManager;
 import java.awt.EventQueue;
-import java.util.ArrayList;
 import java.util.List;
 
-
-public class RenderingManager {
+/**
+ * Manages rendering machinery like window and active rendering surface.
+ * @author Krista Iltanen
+ */
+public class RenderingManager implements Manager {
+    
+    public static final double SCALE_IN_METRES = 0.002;
     
     private static RenderingManager renderingManager;
     
@@ -14,6 +20,10 @@ public class RenderingManager {
     }
     
     public static void shutDown() {
+        if (renderingManager.window != null) {
+            // Destroy window
+        }
+        
         renderingManager = null;
     }
     
@@ -26,10 +36,10 @@ public class RenderingManager {
         return renderingManager;
     }
     
-    private List<Renderable> renderableObjects;
+    private Window window;
     
     private RenderingManager() {
-        this.renderableObjects = new ArrayList<Renderable>();
+        this.window = null;
     }
     
     public void createWindow() {
@@ -37,21 +47,18 @@ public class RenderingManager {
             
             @Override
             public void run() {
-                Window miniPoolWindow = new Window("Mini Pool", 800, 800);
-                miniPoolWindow.setVisible(true);
+                window = new Window("Mini Pool", 1000, 700);
+                window.setVisible(true);
             }
         });
     }
     
     public List<Renderable> getRenderableObjects() {
-        return this.renderableObjects;
+        return EntityManager.get().getRenderableObjects();
     }
-    
-    public void addRenderableObject(Renderable object) {
-        this.renderableObjects.add(object);
-    }
-    
-    public void removeRenderableObjects(Renderable object) {
-        this.renderableObjects.remove(object);
+
+    @Override
+    public void update(double deltaTime) {
+        // Rendering is done in its own thread nothing to do here.
     }
 }

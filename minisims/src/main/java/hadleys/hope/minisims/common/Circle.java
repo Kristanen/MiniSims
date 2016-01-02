@@ -2,6 +2,10 @@ package hadleys.hope.minisims.common;
 
 import org.apache.commons.math3.linear.RealMatrix;
 
+/**
+ * Can be used to present circle shape.
+ * @author Krista Iltanen
+ */
 public class Circle {
     
     private RealMatrix center;
@@ -14,6 +18,10 @@ public class Circle {
     
     public RealMatrix getCenter() {
         return this.center;
+    }
+    
+    public void setCenter(RealMatrix center) {
+        this.center = center;
     }
     
     public double getRay() {

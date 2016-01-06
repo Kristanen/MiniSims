@@ -10,6 +10,8 @@ public abstract class Entity {
     
     public Entity(final String id) {
         this.id = id;
+        
+        EntityManager.get().addEntity(this);
     }
     
     public abstract void update(double deltaTime);

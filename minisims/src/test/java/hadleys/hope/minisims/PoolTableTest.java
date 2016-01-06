@@ -20,22 +20,4 @@ public class PoolTableTest {
         EntityManager.shutDown();
         RenderingManager.shutDown();
     }
-    
-    @Test
-    public void registersWhiteBallToRenderingManager() {
-        assertTrue(RenderingManager.get().getRenderableObjects().isEmpty());
-        
-        PoolTable table = new PoolTable();
-        
-        assertTrue(RenderingManager.get().getRenderableObjects().size() == 1);
-    }
-    
-    @Test
-    public void registersWhiteBallToEntityManager() {
-        assertTrue(EntityManager.get().getAllEntities().isEmpty());
-        
-        PoolTable table = new PoolTable();
-        
-        assertTrue(EntityManager.get().getAllEntities().size() == 1);
-    }
 }

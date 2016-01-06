@@ -7,10 +7,10 @@ import java.awt.Paint;
 import hadleys.hope.minisims.common.Circle;
 import hadleys.hope.minisims.entitysystem.Entity;
 import hadleys.hope.minisims.renderingsystem.Renderable;
+import hadleys.hope.minisims.renderingsystem.RenderingManager;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.dyn4j.dynamics.Body;
-import org.dyn4j.geometry.Mass;
-import org.dyn4j.geometry.Vector2;
+import org.dyn4j.geometry.MassType;
 
 /**
  * Presents a single ball on the table.
@@ -40,8 +40,8 @@ public class Ball extends Entity implements Renderable, Collidable {
         this.collisionBody = new Body();
         this.collisionBody.addFixture(new org.dyn4j.geometry.Circle(this.wireframe.getRay()));
         this.collisionBody.translate(this.wireframe.getCenter().getEntry(0, 0), this.wireframe.getCenter().getEntry(0, 1));
-        this.collisionBody.setMass(new Mass(new Vector2(this.wireframe.getCenter().getEntry(0, 0), this.wireframe.getCenter().getEntry(0, 1)),
-                                        0.2, 100.0));
+        this.collisionBody.setMass(MassType.NORMAL);
+        this.collisionBody.setLinearDamping(250);
     }
 
     /**
@@ -51,9 +51,9 @@ public class Ball extends Entity implements Renderable, Collidable {
      */
     @Override
     public void render(Graphics2D graphics2D) {
-        int diameter = (int) (this.wireframe.getRay() * 2.0);
-        int leftCornerX = (int)(this.wireframe.getCenter().getEntry(0, 0) - this.wireframe.getRay());
-        int leftCornerY = (int)(this.wireframe.getCenter().getEntry(0, 1) - this.wireframe.getRay());
+        int diameter = (int) (this.wireframe.getRay() * 2.0 / RenderingManager.SCALE_IN_METERS);
+        int leftCornerX = (int)((this.wireframe.getCenter().getEntry(0, 0) - this.wireframe.getRay()) / RenderingManager.SCALE_IN_METERS);
+        int leftCornerY = (int)((this.wireframe.getCenter().getEntry(0, 1) - this.wireframe.getRay()) / RenderingManager.SCALE_IN_METERS);
         
         graphics2D.setPaint(this.fill);
         graphics2D.fillOval(leftCornerX, leftCornerY, diameter, diameter);
@@ -71,11 +71,9 @@ public class Ball extends Entity implements Renderable, Collidable {
     public void update(double deltaTime) {
         this.collisionBody = CollisionManager.get().getWorldBody(this);
         
-        this.collisionBody.applyForce(new Vector2(1, 1));
-        
         RealMatrix center = this.wireframe.getCenter();
-        center.setEntry(0, 0, this.collisionBody.getTransform().getTranslationX() * 2);
-        center.setEntry(0, 0, this.collisionBody.getTransform().getTranslationY() * 2);
+        center.setEntry(0, 0, this.collisionBody.getTransform().getTranslationX());
+        center.setEntry(0, 1, this.collisionBody.getTransform().getTranslationY());
         this.wireframe.setCenter(center);
     }
 
@@ -87,5 +85,37 @@ public class Ball extends Entity implements Renderable, Collidable {
     @Override
     public Body getCollisionBody() {
         return this.collisionBody;
+    }
+
+    @Override
+    public int getRenderingLevel() {
+        return 3;
+    }
+    
+    /**
+     * Return center of the ball.
+     * 
+     * @return 
+     */
+    public RealMatrix getCenter() {
+        return this.wireframe.getCenter();
+    }
+    
+    /**
+     * Set center for the ball.
+     * 
+     * @param center Desired center for the ball.
+     */
+    public void setCenter(RealMatrix center) {
+        this.wireframe.setCenter(center);
+    }
+    
+    /**
+     * Return ray of the ball.
+     * 
+     * @return 
+     */
+    public double getRay() {
+        return this.wireframe.getRay();
     }
 }

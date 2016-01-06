@@ -8,5 +8,7 @@ import java.awt.Graphics2D;
  */
 public interface Renderable {
     
+    public int getRenderingLevel();
+    
     public void render(Graphics2D graphics2D);
 }

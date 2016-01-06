@@ -22,25 +22,27 @@ public class MiniPoolApp {
         EntityManager.startUp();
         RenderingManager.startUp();
         CollisionManager.startUp();
+        PoolGame.startUp();
         
-        managers.addAll(Arrays.asList(EntityManager.get(), RenderingManager.get(), CollisionManager.get()));
+        managers.addAll(Arrays.asList(EntityManager.get(), RenderingManager.get(), CollisionManager.get(), PoolGame.get()));
         
         RenderingManager.get().createWindow();
         
-        PoolTable poolTable = new PoolTable();
-        
-        gameLoop(poolTable, managers);
+        gameLoop(managers);
         
         CollisionManager.shutDown();
         RenderingManager.shutDown();
         EntityManager.shutDown();
     }
     
+    /**
+     * Ends the game.
+     */
     public static void endGame() {
         isGameOver = true;
     }
     
-    private static void gameLoop(PoolTable poolTable, List<Manager> managers) {
+    private static void gameLoop(List<Manager> managers) {
         isGameOver = false;
         
         double deltaTime = 1.0;
@@ -55,6 +57,12 @@ public class MiniPoolApp {
             
             for (Entity entity : EntityManager.get().getAllEntities()) {
                 entity.update(deltaTime);
+            }
+            
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                // Do nothing sleep failed
             }
             
             deltaTime = (double)(System.currentTimeMillis() - timeStart) / 1000.0;

@@ -34,6 +34,13 @@ public class Window extends JFrame {
         super.setVisible(true);
         
         this.drawingSurface.createBufferStrategy(NUMBER_OF_BUFFERS_IN_DOUBLE_BUFFERING);
+    
+        super.setResizable(false);
+        super.pack();
+    }
+    
+    public void render() {
+        this.drawingSurface.repaint();
     }
     
     private JPanel actionBar() {

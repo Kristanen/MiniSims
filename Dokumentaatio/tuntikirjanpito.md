@@ -26,5 +26,17 @@ Aktiivisen renderöinnin toteutus käyttäen kaksoisbufferointia, renderöitävi
 **pe 1.1.2015 1 h 30 min:**
 Käyttöliittymä, törmäyksen havainnointi -kirjaston käyttöönottoa
 
-**la 2.1.2015 5h:**
+**la 2.1.2015 5 h:**
 Käyttöliittymä, törmäyksen havainnointi -systeemin integrointia, Javadoc
+
+**su 3.1.2015 8 h:**
+Seinien paikkojen määrittely, törmäyksen havainnoinnin integrointia, lisäyksiä käyttöliittymään, PoolGame-luokan aloitus
+
+**ma 4.1.2015 4 h:**
+Seinien luonti, biljardipöydän taustan aloitus, törmäyksen havainnoinnin parantaminen, piirtojärjestyksen määrittely
+
+**ti 5.1.2015 4 h:**
+Pussien luonti, pöydän viimeistely, muiden pallojen luonti, törmäyksen havainnoinnin integrointia
+
+**ke 6.1.2015 5 h:**
+Javadocien täydentäminen, luokkakaavion päivittäminen, sekvenssikaavioiden piirtäminen, vähän testien kirjoittamista, koodikatselmointi

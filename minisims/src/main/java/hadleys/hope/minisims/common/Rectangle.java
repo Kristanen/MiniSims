@@ -49,6 +49,14 @@ public class Rectangle {
         this.pointD = this.globalRotate(angleRad, pointD);
     }
     
+    public double getWidth() {
+        return this.pointA.subtract(this.pointB).getNorm();
+    }
+    
+    public double getHeight() {
+        return this.pointA.subtract(this.pointC).getNorm();
+    }
+    
     public String toString() {
         return "A: " + this.pointA + "\nB: " +  this.pointB + "\nC: " + this.pointC + "\nD: " + this.pointD;
     }

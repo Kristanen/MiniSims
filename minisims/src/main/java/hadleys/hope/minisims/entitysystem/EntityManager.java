@@ -21,6 +21,9 @@ public class EntityManager implements Manager {
     }
     
     public static void shutDown() {
+        gEntityManager.entities.clear();
+        gEntityManager.renderableObjects.clear();
+        gEntityManager.collidableObjects.clear();
         gEntityManager = null;
     }
     

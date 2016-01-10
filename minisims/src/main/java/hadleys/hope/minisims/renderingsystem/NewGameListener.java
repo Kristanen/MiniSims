@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 /**
- * 
+ * Starts new game when button is clicked
  * @author Krista Iltanen
  */
 public class NewGameListener implements ActionListener {

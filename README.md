@@ -15,4 +15,7 @@ Pelaaja
 ##Huomioita
 Huomasin yliopiston koneella, että ohjelmassa esiintyy vilkkumista. Ilmeisesti tätä esiintyy toisilla koneilla enemmän kuin toisilla. Kotikoneellani vilkkumista esiintyy erittäin harvoin.
 
+En ehtinyt saada elastisia törmäyksiä toimimaan, joten MiniPool ei ole biljardina realistinen.
+
 Joitakin luokista oli erittäin vaikea testata, sillä monet niistä olivat suoraan sidoksissa piirtämiseen. Yksikkötestien lisäksi kirjoitin graafiselle käyttöliittymälle omat testit, jotka simuloivat käyttäjän toimintaa, käyttäen AssertJ Swing JUnit -kirjastoa. Yrittäessäni generoida Pit-raporttia tämän jälkeen testit olivat liian hitaita, joten Pit-raportissa ei ole näitä testejä.
+Testejä ei kuitenkaan ole ignorattu. Eli jos halutaan generoida Pit raportti tulee näihin testeihin lisäty ignore ennen sitä.

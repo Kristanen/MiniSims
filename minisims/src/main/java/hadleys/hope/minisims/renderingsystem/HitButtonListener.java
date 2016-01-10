@@ -11,6 +11,8 @@ import org.dyn4j.geometry.Vector2;
 
 /**
  * Takes care of the hits.
+ * Calculates the force which is applied to the white ball and
+ * validates the power and angle fields.
  * @author Krista Iltanen
  */
 public class HitButtonListener implements ActionListener {
@@ -23,10 +25,10 @@ public class HitButtonListener implements ActionListener {
     private JLabel currentStrokes;
     
     /**
-     * 
-     * @param power
-     * @param angle
-     * @param currentStrokes 
+     * Creates new HitBUtton listener
+     * @param power Power text field
+     * @param angle Angle text field
+     * @param currentStrokes Field which holds the current points
      */
     public HitButtonListener(JTextField power, JTextField angle, JLabel currentStrokes) {
         this.power = power;

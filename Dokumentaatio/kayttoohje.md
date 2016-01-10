@@ -6,4 +6,4 @@ Valkoista palloa lyödään antamalla haluttu kulma asteina ja nopeus prosenttei
 ##Huomioita
 Huomasin yliopiston koneella, että ohjelmassa esiintyy vilkkumista. Ilmeisesti tätä esiintyy toisilla koneilla enemmän kuin toisilla. Kotikoneellani vilkkumista esiintyy erittäin harvoin.
 
-Joitakin luokista oli erittäin vaikea testata, sillä monet niistä olivat suoraan sidoksissa piirtämiseen. Yksikkötestien lisäksi kirjoitin graafiselle käyttöliittymälle omat testit, jotka simuloivat käyttäjän toimintaa, käyttäen AssertJ Swing JUnit -kirjastoa. Yrittäessäni generoida Pit-raporttia tämän jälkeen testit olivat liian hitaita, joten Pit-raportissa ei ole näitä testejä.
+En ehtinyt saada elastisia törmäyksiä toimimaan, joten MiniPool ei ole biljardina realistinen.

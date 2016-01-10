@@ -8,7 +8,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 
 /**
- * Can be used to present rectangle shape.
+ * Can be used to represent rectangle shape.
  * @author Krista Iltanen
  */
 public class Rectangle {
@@ -70,7 +70,7 @@ public class Rectangle {
     
     /**
      * Returns string notation of the locations of the corners of the rectangle.
-     * @return 
+     * @return string notation of the locations of the corners of the rectangle
      */
     public String toString() {
         return "A: " + this.pointA + "\nB: " +  this.pointB + "\nC: " + this.pointC + "\nD: " + this.pointD;

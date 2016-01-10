@@ -27,6 +27,12 @@ public class Window extends JFrame {
     private JButton hitButton;
     private JButton newGameButton;
     
+    /**
+     * Defines the window.
+     * @param title Title of the window.
+     * @param width Width of the window.
+     * @param height Height of the window.
+     */
     public Window(final String title, final int width, final int height) {
         super(title);
         super.setTitle(title);
@@ -50,10 +56,14 @@ public class Window extends JFrame {
         super.pack();
     }
     
-    public void setIsHitButtonEnables(boolean isEnabled) {
+    public void setIsHitButtonEnabled(boolean isEnabled) {
         this.hitButton.setEnabled(isEnabled);
     }
     
+    /**
+     * Returns if the Hit-button is ready to get pushed.
+     * @return True if Hit-button can be pushed and false if not.
+     */
     public boolean isHitButtonEnabled() {
         return this.hitButton.isEnabled();
     }
@@ -66,6 +76,9 @@ public class Window extends JFrame {
         this.currentPoints.setText(Integer.toString(hits));
     }
     
+    /**
+     * Renders the window.
+     */
     public void render() {
         this.drawingSurface.repaint();
     }

@@ -43,6 +43,9 @@ public class PoolTable extends Entity {
         
     }
     
+    /**
+     * Clears the pool table.
+     */
     public void clear() {
         
         for (String ballId : this.otherBalls) {
@@ -73,7 +76,8 @@ public class PoolTable extends Entity {
     
     /**
      * Returns all the coloured balls as a list.
-     * @return 
+     * 
+     * @return List of coloured balls.
      */
     public List<String> getAllColourBalls() {
         return this.otherBalls;

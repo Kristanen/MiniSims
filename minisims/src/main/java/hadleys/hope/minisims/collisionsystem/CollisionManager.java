@@ -55,7 +55,7 @@ public class CollisionManager implements Manager {
     
     /**
      * Returns the body element of the collidable from the world
-     * @param collidable Collidble whoes collision body is being retrieved.
+     * @param collidable Collidable whose collision body is being retrieved.
      * @return the body element from the world
      */
     public Body getWorldBody(Collidable collidable) {
@@ -69,6 +69,9 @@ public class CollisionManager implements Manager {
         return null;
     }
     
+    /**
+     * Sets velocity and direction of the ball to zero.
+     */
     public void clear() {
         this.world = new World();
         

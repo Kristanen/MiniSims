@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import org.dyn4j.geometry.Vector2;
 
+/**
+ * Takes care of the hits.
+ * @author Krista Iltanen
+ */
 public class HitButtonListener implements ActionListener {
     
     private static final double MAX_POWER = 500000.0;
@@ -18,6 +22,12 @@ public class HitButtonListener implements ActionListener {
     
     private JLabel currentStrokes;
     
+    /**
+     * 
+     * @param power
+     * @param angle
+     * @param currentStrokes 
+     */
     public HitButtonListener(JTextField power, JTextField angle, JLabel currentStrokes) {
         this.power = power;
         this.angle = angle;

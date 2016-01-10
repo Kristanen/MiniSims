@@ -17,13 +17,23 @@ public class RenderingManager implements Manager {
     
     private static RenderingManager renderingManager;
     
+    /**
+     * Activates the Rendering Manager.
+     */
     public static void startUp() {
         renderingManager = new RenderingManager();
     }
     
+    /**
+     * SHuts down the Rendering Manager.
+     */
     public static void shutDown() {
         if (renderingManager.window != null) {
             // Destroy window
+        }
+        
+        if (renderingManager.window != null) {
+            renderingManager.window.dispose();
         }
         
         renderingManager = null;
@@ -56,6 +66,9 @@ public class RenderingManager implements Manager {
         return this.window;
     }
     
+    /**
+     * Creates the window.
+     */
     public void createWindow() {
         window = new Window("Mini Pool", 1100, 700);
         window.setVisible(true);
@@ -93,11 +106,11 @@ public class RenderingManager implements Manager {
         
         Ball whiteBall = (Ball) EntityManager.get().getEntity(PoolGame.get().getPoolTable().getWhiteBall());
         if ((allBallsAreStill && whiteBall.isStill()) && !this.window.isHitButtonEnabled()) {
-            this.window.setIsHitButtonEnables(true);
+            this.window.setIsHitButtonEnabled(true);
         }
         
         else if ((!(allBallsAreStill && whiteBall.isStill())) && this.window.isHitButtonEnabled()) {
-            this.window.setIsHitButtonEnables(false);
+            this.window.setIsHitButtonEnabled(false);
         }
     }
 }

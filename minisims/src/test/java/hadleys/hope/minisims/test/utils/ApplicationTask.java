@@ -2,7 +2,7 @@ package hadleys.hope.minisims.test.utils;
 
 import hadleys.hope.minisims.MiniPoolApp;
 
-public class ApplicationThread implements Runnable {
+public class ApplicationTask implements Runnable {
 
     @Override
     public void run() {

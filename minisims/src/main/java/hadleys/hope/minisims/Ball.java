@@ -51,8 +51,9 @@ public class Ball extends Entity implements Renderable, Collidable {
     }
     
     /**
+     * Checks is the ball moving or not.
      * 
-     * @return 
+     * @return True if the ball isn't moving and false if it is.
      */
     public boolean isStill() {
         Body body = CollisionManager.get().getWorldBody(this);
@@ -130,7 +131,7 @@ public class Ball extends Entity implements Renderable, Collidable {
     /**
      * Returns collision body object.
      * 
-     * @return 
+     * @return Body
      */
     @Override
     public Body getCollisionBody() {
@@ -145,7 +146,7 @@ public class Ball extends Entity implements Renderable, Collidable {
     /**
      * Returns center of the ball.
      * 
-     * @return 
+     * @return Center of the ball.
      */
     public RealMatrix getCenter() {
         return this.wireframe.getCenter();

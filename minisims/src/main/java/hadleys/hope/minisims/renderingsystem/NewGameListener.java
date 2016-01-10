@@ -5,10 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author Krista Iltanen
+ */
 public class NewGameListener implements ActionListener {
     
     private JLabel currentStrokes;
     
+    /**
+     * Constructor for the NewGameListener.
+     * @param currentStrokes 
+     */
     public NewGameListener(JLabel currentStrokes) {
         this.currentStrokes = currentStrokes;
     }

@@ -8,6 +8,10 @@ import java.awt.Graphics2D;
 import java.awt.Paint;
 import org.apache.commons.math3.linear.RealMatrix;
 
+/**
+ * Represents the surface of the pool table.
+ * @author Krista Iltanen
+ */
 public class TableSurface extends Entity implements Renderable {
     
     private Rectangle wireframe;

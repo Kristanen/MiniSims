@@ -3,7 +3,7 @@ package hadleys.hope.minisims.common;
 import org.apache.commons.math3.linear.RealMatrix;
 
 /**
- * Can be used to present circle shape.
+ * Can be used to represent circle shape.
  * @author Krista Iltanen
  */
 public class Circle {

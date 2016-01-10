@@ -40,3 +40,12 @@ Pussien luonti, pöydän viimeistely, muiden pallojen luonti, törmäyksen havai
 
 **ke 6.1.2015 5 h:**
 Javadocien täydentäminen, luokkakaavion päivittäminen, sekvenssikaavioiden piirtäminen, vähän testien kirjoittamista, koodikatselmointi
+
+**pe 8.1.2015 5 h:**
+Käyttöliittymän viimeistely ja action listenereiden lisääminen nappuloihin
+
+**la 9.1.2015 2 h:**
+Testien kirjoittamista
+
+**su 10.1.2015 10 h:**
+Testejä, Pit-raportti, käyttöohjeiden kirjoittaminen, ohjelman rakenteen kuvaaminen, Javadocien viimeistely

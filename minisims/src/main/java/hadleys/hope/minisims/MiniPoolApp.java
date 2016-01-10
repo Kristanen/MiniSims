@@ -35,7 +35,7 @@ public class MiniPoolApp {
         
         gameLoop(managers);
         
-        PoolGame.shutdow();
+        PoolGame.shutdown();
         CollisionManager.shutDown();
         RenderingManager.shutDown();
         EntityManager.shutDown();

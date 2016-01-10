@@ -54,7 +54,7 @@ public class EntityManager implements Manager {
     
     /**
      * Adds entity to the list of all entities and to lists of collidable or renderable entities if it is collidable or renderable.
-     * @param entity Id of the entity which is being examined.
+     * @param entity Entity which is being examined.
      */
     public void addEntity(final Entity entity) {
         this.entities.put(entity.getId(), entity);
@@ -87,7 +87,7 @@ public class EntityManager implements Manager {
     /**
      * Removes the entity from the lists of entities and renderable or collidable entities.
      * @param id Unique identifier of the entity.
-     * @return 
+     * @return True if the entity isn't on the list and false if it is.
      */
     public boolean removeEntity(final String id) {
         Entity entity = this.entities.get(id);

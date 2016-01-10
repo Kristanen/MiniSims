@@ -1,6 +1,6 @@
 package hadleys.hope.minisims.renderingsystem;
 
-import hadleys.hope.minisims.test.utils.ApplicationThread;
+import hadleys.hope.minisims.test.utils.ApplicationTask;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.edt.GuiQuery;
 import org.assertj.swing.fixture.FrameFixture;
@@ -13,12 +13,14 @@ public class HitButtonTest {
 
     private FrameFixture window;
     
-    private ApplicationThread appthread;
+    private ApplicationTask appTask;
+    private Thread appThread;
     
     @Before
     public void init() {
-        this.appthread = new ApplicationThread();
-        (new Thread(this.appthread)).start();
+        this.appTask = new ApplicationTask();
+        this.appThread = new Thread(this.appTask);
+        this.appThread.start();
         
         try {
             Thread.sleep(2000);
@@ -41,13 +43,9 @@ public class HitButtonTest {
     @After
     public void tearDown() {
         this.window.cleanUp();
-        this.appthread.shutdownApp();
-      
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            // Do nothing sleep failed
-        }
+        this.appTask.shutdownApp();
+        
+        while (this.appThread.isAlive()) {}
     }
     
     @Test

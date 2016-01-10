@@ -20,7 +20,7 @@ public class PoolGameTest {
     
     @After
     public void cleanUp() {
-        PoolGame.shutdow();
+        PoolGame.shutdown();
     }
     
     @Test

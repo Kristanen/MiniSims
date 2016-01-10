@@ -75,7 +75,7 @@ public class Pocket extends Entity implements Renderable {
      * Checks if the ball is in the pocket.
      * 
      * @param ball The ball whose situation is being examined.
-     * @return 
+     * @return True if ball is in the pocket and false if it is not.
      */
     public boolean isBallInPocket(Ball ball) {
         return this.wireframe.getCenter().subtract(ball.getCenter()).getNorm() <= Math.abs(this.wireframe.getRay() - ball.getRay());

@@ -24,9 +24,9 @@ public final class PoolGame implements Manager {
     }
     
     /**
-     * 
+     * Removes entity PoolGame from the list of entities.
      */
-    public static void shutdow() {
+    public static void shutdown() {
         EntityManager.get().removeEntity(gPoolGame.poolTable.getId());
         gPoolGame = null;
     }
@@ -34,7 +34,7 @@ public final class PoolGame implements Manager {
     /**
      * Returns the pool game object.
      * 
-     * @return 
+     * @return Pool game object
      */
     public static PoolGame get() {
         

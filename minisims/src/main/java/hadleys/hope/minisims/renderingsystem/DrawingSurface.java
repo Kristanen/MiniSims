@@ -16,6 +16,9 @@ import java.awt.image.BufferStrategy;
  */
 public class DrawingSurface extends Canvas {
     
+    /**
+     * Constructor for the drawing surface.
+     */
     public DrawingSurface() {
         super.setIgnoreRepaint(true);
     }

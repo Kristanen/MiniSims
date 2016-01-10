@@ -4,14 +4,14 @@ import java.awt.Color;
 import hadleys.hope.minisims.common.Circle;
 import hadleys.hope.minisims.common.Rectangle;
 import hadleys.hope.minisims.entitysystem.Entity;
+import hadleys.hope.minisims.entitysystem.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
-import org.dyn4j.geometry.Vector2;
 
 /**
- * Presents all aspects of the pool table.
+ * Represents all aspects of the pool table.
  * @author Krista Iltanen
  */
 public class PoolTable extends Entity {
@@ -21,7 +21,13 @@ public class PoolTable extends Entity {
     private String tableSurface;
     
     private List<String> walls;
+    private List<String> pockets;
     
+    /**
+     * Constructor for the pool table.
+     * 
+     * @param id Unique identifier for the table.
+     */
     public PoolTable(String id) {
         super(id);
         
@@ -37,21 +43,55 @@ public class PoolTable extends Entity {
         
     }
     
+    public void clear() {
+        
+        for (String ballId : this.otherBalls) {
+            EntityManager.get().removeEntity(ballId);
+        }
+        
+        EntityManager.get().removeEntity(this.whiteBall);
+        
+        EntityManager.get().removeEntity(this.tableSurface);
+        
+        for (String wallId : this.walls) {
+            EntityManager.get().removeEntity(wallId);
+        }
+        
+        for (String pocketId : this.pockets) {
+            EntityManager.get().removeEntity(pocketId);
+        }
+    }
+    
+    /**
+     * Returns the white ball id.
+     * 
+     * @return white ball id
+     */
     public String getWhiteBall() {
         return this.whiteBall;
     }
     
+    /**
+     * Returns all the coloured balls as a list.
+     * @return 
+     */
     public List<String> getAllColourBalls() {
         return this.otherBalls;
     }
     
+    /**
+     * Creates a white ball.
+     */
     private void createWhiteBall() {
-        final double[][] whiteBallMatrixData = { {0.2, 0.4} };
+        final double[][] whiteBallMatrixData = { {0.4, 0.6} };
         final RealMatrix whiteBallCenter = new Array2DRowRealMatrix(whiteBallMatrixData);
         
         this.whiteBall = new Ball("whiteBall", new Circle(whiteBallCenter, 0.029), Color.WHITE, Color.BLACK).getId();
     }
     
+    /**
+     * Creates the coloured balls.
+     */
     private void createOtherBalls() {
         this.otherBalls = new ArrayList<String>();
         
@@ -139,30 +179,31 @@ public class PoolTable extends Entity {
     }
     
     private void createPockets() {
+        this.pockets = new ArrayList<String>();
+        
         double frontLeftPocketLocation[] = {0.1, 0.0435};
-        this.createPocket("frontLeftPocket", frontLeftPocketLocation);
+        this.pockets.add(this.createPocket("frontLeftPocket", frontLeftPocketLocation).getId());
         
         double centerLeftPocketLocation[] = {1.1, 0.0435};
-        this.createPocket("centerLeftPocket", centerLeftPocketLocation);
+        this.pockets.add(this.createPocket("centerLeftPocket", centerLeftPocketLocation).getId());
         
         double backLeftPocketLocation[] = {2.0435, 0.0435};
-        this.createPocket("backLeftPocket", backLeftPocketLocation);
+        this.pockets.add(this.createPocket("backLeftPocket", backLeftPocketLocation).getId());
         
         double backRigthPocketLocation[] = {2.0435, 1.0435};
-        this.createPocket("backRigthPocket", backRigthPocketLocation);
+        this.pockets.add(this.createPocket("backRigthPocket", backRigthPocketLocation).getId());
         
         double centerRigthPocketLocation[] = {1.1, 1.0435};
-        this.createPocket("centerRigthPocket", centerRigthPocketLocation);
+        this.pockets.add(this.createPocket("centerRigthPocket", centerRigthPocketLocation).getId());
         
         double frontRigthPocketLocation[] = {0.1, 1.0435};
-        this.createPocket("frontRigthPocket", frontRigthPocketLocation);
-        
+        this.pockets.add(this.createPocket("frontRigthPocket", frontRigthPocketLocation).getId());
     }
     
-    private void createPocket(String id, double center[]) {
+    private Pocket createPocket(String id, double center[]) {
         final double[][] pocketMatrixData = { center };
         final RealMatrix pocketCenter = new Array2DRowRealMatrix(pocketMatrixData);
         
-        new Pocket(id, new Circle(pocketCenter, 0.06), Color.BLACK);
+        return new Pocket(id, new Circle(pocketCenter, 0.06), Color.BLACK);
     }
 }

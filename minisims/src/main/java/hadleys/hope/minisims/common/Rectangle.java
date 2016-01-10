@@ -18,6 +18,13 @@ public class Rectangle {
     private RealMatrix pointC;
     private RealMatrix pointD;
     
+    /**
+     * Constructor for the rectangle.
+     * @param pointA Upper left corner of the rectangle.
+     * @param pointB Upper right corner of the rectangle.
+     * @param pointC Lower left corner of the rectangle.
+     * @param pointD Lower right corner of the rectangle.
+     */
     public Rectangle(final RealMatrix pointA, final RealMatrix pointB, final RealMatrix pointC, final RealMatrix pointD) {
         this.pointA = pointA;
         this.pointB = pointB;
@@ -42,6 +49,10 @@ public class Rectangle {
         this.pointD = newPointD;
     }
     
+    /**
+     * Rotates the rectangle according to origin.
+     * @param angleRad Rotation angle in radians.
+     */
     public void globalRotate(final double angleRad) {
         this.pointA = this.globalRotate(angleRad, pointA);
         this.pointB = this.globalRotate(angleRad, pointB);
@@ -57,6 +68,10 @@ public class Rectangle {
         return this.pointA.subtract(this.pointC).getNorm();
     }
     
+    /**
+     * Returns string notation of the locations of the corners of the rectangle.
+     * @return 
+     */
     public String toString() {
         return "A: " + this.pointA + "\nB: " +  this.pointB + "\nC: " + this.pointC + "\nD: " + this.pointD;
     }
@@ -97,8 +112,6 @@ public class Rectangle {
         }
         return true;
     }
-    
-    
     
     private RealMatrix globalRotate(final double angleRad, final RealMatrix columnVector) {
         final double[][] matrixData = { {Math.cos(angleRad), -1.0 * Math.sin(angleRad)}, {Math.sin(angleRad), Math.cos(angleRad)} };

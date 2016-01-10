@@ -1,5 +1,12 @@
 package hadleys.hope.minisims;
 
+import hadleys.hope.minisims.collisionsystem.CollisionManager;
+import hadleys.hope.minisims.entitysystem.EntityManager;
+
+/**
+ * Represents the game as a whole.
+ * @author Krista Iltanen
+ */
 public final class PoolGame implements Manager {
     
     private static PoolGame gPoolGame;
@@ -14,6 +21,14 @@ public final class PoolGame implements Manager {
         }
         
         gPoolGame = new PoolGame();
+    }
+    
+    /**
+     * 
+     */
+    public static void shutdow() {
+        EntityManager.get().removeEntity(gPoolGame.poolTable.getId());
+        gPoolGame = null;
     }
     
     /**
@@ -36,8 +51,6 @@ public final class PoolGame implements Manager {
     
     private PoolGame() {
         this.poolTable = new PoolTable("poolTable");
-        
-        this.clearGame();
     }
     
     /**
@@ -54,8 +67,30 @@ public final class PoolGame implements Manager {
      */
     public void clearGame() {
         this.hits = 0;
+        
+        this.poolTable.clear();
+        EntityManager.get().removeEntity(this.poolTable.getId());
+        
+        CollisionManager.get().clear();
+        
+        this.poolTable = new PoolTable("poolTable");
     }
-
+    
+    /**
+     * Increases the amount of hits by one.
+     */
+    public void hitPerformed() {
+        this.hits++;
+    }
+    
+    /**
+     * Returns the number of used hits.
+     * @return 
+     */
+    public int getHits() {
+        return this.hits;
+    }
+    
     @Override
     public void update(double deltaTime) {
         

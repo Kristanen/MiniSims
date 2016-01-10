@@ -13,6 +13,12 @@ public class TableSurface extends Entity implements Renderable {
     private Rectangle wireframe;
     private Paint colour;
     
+    /**
+     * Constructor for the surface of the pool table.
+     * @param id Unique identifier for the table surface.
+     * @param wireframe Represents the boundaries of the table surface.
+     * @param colour Colour of the table surface.
+     */
     public TableSurface(String id, Rectangle wireframe, Paint colour) {
         super(id);
         this.wireframe = wireframe;

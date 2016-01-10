@@ -23,6 +23,13 @@ public class Wall extends Entity implements Renderable, Collidable {
     private Body collisionBody;
     private Rectangle wireframe;
     
+    /**
+     * Constructor for one wall of the pool table.
+     * @param id Unique identifier for the wall.
+     * @param wireframe Represents the boundaries of the wall.
+     * @param fill Colour which is used to paint the interior of the wall.
+     * @param edge Colour which is used to paint the edges of the wall.
+     */
     public Wall(String id, Rectangle wireframe, Paint fill, Paint edge) {
         super(id);
         

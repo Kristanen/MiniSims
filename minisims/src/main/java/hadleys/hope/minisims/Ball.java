@@ -11,6 +11,8 @@ import hadleys.hope.minisims.renderingsystem.RenderingManager;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.MassType;
+import org.dyn4j.geometry.Transform;
+import org.dyn4j.geometry.Vector2;
 
 /**
  * Presents a single ball on the table.
@@ -21,7 +23,9 @@ public class Ball extends Entity implements Renderable, Collidable {
     private Paint fill;
     private Paint edge;
     private Circle wireframe;
-    public Body collisionBody;
+    private Body collisionBody;
+    
+    private Vector2 forceToApply;
     
     /**
      * Constructor for ball.
@@ -41,9 +45,49 @@ public class Ball extends Entity implements Renderable, Collidable {
         this.collisionBody.addFixture(new org.dyn4j.geometry.Circle(this.wireframe.getRay()));
         this.collisionBody.translate(this.wireframe.getCenter().getEntry(0, 0), this.wireframe.getCenter().getEntry(0, 1));
         this.collisionBody.setMass(MassType.NORMAL);
-        this.collisionBody.setLinearDamping(250);
+        this.collisionBody.setLinearDamping(300);
+        
+        this.forceToApply = null;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
+    public boolean isStill() {
+        Body body = CollisionManager.get().getWorldBody(this);
+        
+        if (body == null) {
+            return true;
+        }
+        
+        Vector2 velocity = body.getLinearVelocity();
+        boolean isStill = (Math.abs(velocity.x) < 3.0) && (Math.abs(velocity.y) < 3.0);
+        
+        if (isStill) {
+            body.setLinearVelocity(0, 0);
+        }
+        
+        return isStill;
+    }
+    
+    /**
+     * Hits the ball with desired force.
+     * 
+     * @param force The force used to hit the ball.
+     */
+    public void hit(Vector2 force) {
+        
+        PoolGame.get().hitPerformed();
+        
+        if (this.forceToApply == null) {
+            this.forceToApply = force;
+            return;
+        }
+        
+        this.forceToApply = this.forceToApply.add(force);
+    }
+    
     /**
      * Renders the ball.
      * 
@@ -63,13 +107,19 @@ public class Ball extends Entity implements Renderable, Collidable {
     }   
 
     /**
-     * Update ball logic.
+     * Updates the ball logic.
      * 
      * @param deltaTime Time passed since last frame.
      */
     @Override
     public void update(double deltaTime) {
         this.collisionBody = CollisionManager.get().getWorldBody(this);
+        
+        // Apply force if needed
+        if (this.forceToApply != null) {
+            this.collisionBody.applyForce(this.forceToApply);
+            this.forceToApply = null;
+        }
         
         RealMatrix center = this.wireframe.getCenter();
         center.setEntry(0, 0, this.collisionBody.getTransform().getTranslationX());
@@ -78,7 +128,7 @@ public class Ball extends Entity implements Renderable, Collidable {
     }
 
     /**
-     * Return collision body object.
+     * Returns collision body object.
      * 
      * @return 
      */
@@ -93,7 +143,7 @@ public class Ball extends Entity implements Renderable, Collidable {
     }
     
     /**
-     * Return center of the ball.
+     * Returns center of the ball.
      * 
      * @return 
      */
@@ -102,12 +152,21 @@ public class Ball extends Entity implements Renderable, Collidable {
     }
     
     /**
-     * Set center for the ball.
+     * Sets center for the ball.
      * 
      * @param center Desired center for the ball.
      */
     public void setCenter(RealMatrix center) {
         this.wireframe.setCenter(center);
+        
+        Body body = CollisionManager.get().getWorldBody(this);
+        
+        if (body != null) {
+            body.setLinearVelocity(0, 0);
+            Transform transform = new Transform();
+            transform.setTranslation(this.wireframe.getCenter().getEntry(0, 0), this.wireframe.getCenter().getEntry(0, 1));
+            body.setTransform(transform);
+        }
     }
     
     /**

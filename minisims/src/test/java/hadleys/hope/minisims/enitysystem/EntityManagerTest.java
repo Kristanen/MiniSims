@@ -12,17 +12,6 @@ import java.util.Arrays;
 
 public class EntityManagerTest {
     
-    // Uncomment when solution for Pit is found
-    /*@Test
-    public void shouldThrowExceptionWhenGetIsCalledBeforeStartUp() {
-        try {
-            EntityManager.get();
-            fail();
-        } catch (IllegalStateException e) {
-            // Do nothing. Exception was thrown correctly.
-        }
-    }*/
-    
     @Test
     public void shouldBeAbleToGetAfterStartUpIsCalled() {
         EntityManager.startUp();
@@ -93,5 +82,17 @@ public class EntityManagerTest {
         TestRenderableEntity renderable = new TestRenderableEntity("testRenderableEntity1");
         
         assertTrue(EntityManager.get().getAllEntities().containsAll(Arrays.asList(entity, renderable, collidable)));
+    }
+    
+    @Test
+    public void shouldRemoveEntityCorrectly() {
+        TestEntity entity = new TestEntity("testEntity1");
+        TestCollidableEntity collidable = new TestCollidableEntity("testEntity2");
+        TestRenderableEntity renderable = new TestRenderableEntity("testRenderableEntity1");
+        
+        EntityManager.get().removeEntity(renderable.getId());
+        
+        assertTrue(!EntityManager.get().getAllEntities().contains(renderable));
+        assertTrue(EntityManager.get().getAllEntities().containsAll(Arrays.asList(collidable, entity)));
     }
 }

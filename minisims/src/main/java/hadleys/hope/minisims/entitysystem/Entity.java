@@ -8,6 +8,10 @@ public abstract class Entity {
     
     private final String id;
     
+    /**
+     * Constructor for entity.
+     * @param id Unique identifier for the entity.
+     */
     public Entity(final String id) {
         this.id = id;
         

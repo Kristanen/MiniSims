@@ -18,12 +18,16 @@ public class CollisionManager implements Manager {
     
     private static final double MILLISECOND_BASE = 1000.0;
     
-    private static boolean firstLoop = true;
-    
+    /**
+     * Activates the Collision Manager.
+     */
     public static void startUp() {
         collisionManager = new CollisionManager();
     }
     
+    /**
+     * Shuts down the Collision Manager.
+     */
     public static void shutDown() {
         collisionManager = null;
     }
@@ -49,22 +53,30 @@ public class CollisionManager implements Manager {
         this.world.setGravity(new Vector2(0 ,0));
     }
     
+    /**
+     * Returns the body element of the collidable from the world
+     * @param collidable Collidble whoes collision body is being retrieved.
+     * @return the body element from the world
+     */
     public Body getWorldBody(Collidable collidable) {
         for (Body worldBody : this.world.getBodies()) {
             
-            if (worldBody.equals(collidable.getCollisionBody())) {
-                
-                if (firstLoop) {
-                    firstLoop = false;
-                    
-                    worldBody.applyForce(new Vector2(50000, 10000));
-                }
-                
+            if (worldBody.equals(collidable.getCollisionBody())) {           
                 return worldBody;
             }
         }
         
         return null;
+    }
+    
+    public void clear() {
+        this.world = new World();
+        
+        Settings settings = this.world.getSettings();
+        settings.setRestitutionVelocity(0);
+        this.world.setSettings(settings);
+        
+        this.world.setGravity(new Vector2(0 ,0));
     }
     
     @Override
@@ -83,12 +95,15 @@ public class CollisionManager implements Manager {
         }
         
         // Remove all bodies which have been removed after previous update
-        /*for (Body body : this.world.getBodies()) {
+        Body worldBodies[] = new Body[this.world.getBodies().size()];
+        this.world.getBodies().toArray(worldBodies);
+        
+        for (Body body : worldBodies) {
             
             if (!bodiesOfCollidables.contains(body)) {
                 this.world.removeBody(body);
             }
-        }*/
+        }
         
         this.world.updatev(deltaTime / MILLISECOND_BASE);
     }

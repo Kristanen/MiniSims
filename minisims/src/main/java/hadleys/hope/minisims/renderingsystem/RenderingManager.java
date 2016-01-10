@@ -1,8 +1,9 @@
 package hadleys.hope.minisims.renderingsystem;
 
+import hadleys.hope.minisims.Ball;
 import hadleys.hope.minisims.Manager;
+import hadleys.hope.minisims.PoolGame;
 import hadleys.hope.minisims.entitysystem.EntityManager;
-import java.awt.EventQueue;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -51,6 +52,10 @@ public class RenderingManager implements Manager {
         };
     }
     
+    public Window getWindow() {
+        return this.window;
+    }
+    
     public void createWindow() {
         window = new Window("Mini Pool", 1100, 700);
         window.setVisible(true);
@@ -66,5 +71,33 @@ public class RenderingManager implements Manager {
     public void update(double deltaTime) {
         // Rendering is done in its own thread nothing to do here.
         this.window.render();
+        
+        // Refresh current hits label if necessary
+        if (this.window.getCurrentHitsLabel() != PoolGame.get().getHits()) {
+            this.window.setCurrentHitsLabel(PoolGame.get().getHits());
+        }
+        
+        // Hit button enabled if all balls have stopped
+        boolean allBallsAreStill = true;
+        for (String ballId : PoolGame.get().getPoolTable().getAllColourBalls()) {
+            Ball ball = (Ball) EntityManager.get().getEntity(ballId);
+            
+            if (ball == null) {
+                continue;
+            }
+            
+            if (!ball.isStill()) {
+                allBallsAreStill = false;
+            }
+        }
+        
+        Ball whiteBall = (Ball) EntityManager.get().getEntity(PoolGame.get().getPoolTable().getWhiteBall());
+        if ((allBallsAreStill && whiteBall.isStill()) && !this.window.isHitButtonEnabled()) {
+            this.window.setIsHitButtonEnables(true);
+        }
+        
+        else if ((!(allBallsAreStill && whiteBall.isStill())) && this.window.isHitButtonEnabled()) {
+            this.window.setIsHitButtonEnables(false);
+        }
     }
 }

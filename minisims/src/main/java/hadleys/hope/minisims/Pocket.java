@@ -10,6 +10,11 @@ import java.awt.Paint;
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
 
+
+/**
+ * Represents the pockets in the game.
+ * @author Krista Iltanen
+ */
 public class Pocket extends Entity implements Renderable {
     
     private Circle wireframe;
@@ -40,9 +45,14 @@ public class Pocket extends Entity implements Renderable {
         
         Ball whiteBall = (Ball)EntityManager.get().getEntity(PoolGame.get().getPoolTable().getWhiteBall());
         if (this.isBallInPocket(whiteBall)) {
-            final double[][] whiteBallMatrixData = { {0.2, 0.4} };
+            final double[][] whiteBallMatrixData = { {0.4, 0.6} };
             final RealMatrix whiteBallCenter = new Array2DRowRealMatrix(whiteBallMatrixData);
             whiteBall.setCenter(whiteBallCenter);
+            
+            // Penalty
+            for (int i = 0;i < 2;i ++) {
+                PoolGame.get().hitPerformed();
+            }
         }
     }
 

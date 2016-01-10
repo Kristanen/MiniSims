@@ -11,6 +11,11 @@ public class Circle {
     private RealMatrix center;
     private double ray;
     
+    /**
+     * Constructor for the circle.
+     * @param center Center of the circle.
+     * @param ray Ray of the circle.
+     */
     public Circle(final RealMatrix center, final double ray) {
         this.center = center;
         this.ray = ray;

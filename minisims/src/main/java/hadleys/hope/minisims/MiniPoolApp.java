@@ -16,6 +16,11 @@ public class MiniPoolApp {
     
     private static boolean isGameOver;
     
+    /**
+     * Main-method for the game. Initializes the game, calls for game loop and shuts the Managers down.
+     * 
+     * @param argv 
+     */
     public static void main(String[] argv) {
         List<Manager> managers = new ArrayList<Manager>();
         
@@ -30,6 +35,7 @@ public class MiniPoolApp {
         
         gameLoop(managers);
         
+        PoolGame.shutdow();
         CollisionManager.shutDown();
         RenderingManager.shutDown();
         EntityManager.shutDown();
@@ -42,6 +48,11 @@ public class MiniPoolApp {
         isGameOver = true;
     }
     
+    /**
+     * Represents one round of the game.
+     * 
+     * @param managers List of the Managers.
+     */
     private static void gameLoop(List<Manager> managers) {
         isGameOver = false;
         

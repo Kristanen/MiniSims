@@ -2,9 +2,9 @@ package hadleys.hope.minisims.renderingsystem;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Label;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,6 +19,14 @@ public class Window extends JFrame {
     
     private DrawingSurface drawingSurface;
     
+    private JTextField angle;
+    private JTextField power;
+    
+    private JLabel currentPoints;
+    
+    private JButton hitButton;
+    private JButton newGameButton;
+    
     public Window(final String title, final int width, final int height) {
         super(title);
         super.setTitle(title);
@@ -27,6 +35,9 @@ public class Window extends JFrame {
         
         super.add(this.actionBar(), BorderLayout.PAGE_END);
         super.add(this.statusBar(), BorderLayout.PAGE_START);
+        
+        this.hitButton.addActionListener(new HitButtonListener(power, angle, currentPoints));
+        this.newGameButton.addActionListener(new NewGameListener(this.currentPoints));
         
         this.drawingSurface = new DrawingSurface();
         super.add(this.drawingSurface, BorderLayout.CENTER);
@@ -39,6 +50,22 @@ public class Window extends JFrame {
         super.pack();
     }
     
+    public void setIsHitButtonEnables(boolean isEnabled) {
+        this.hitButton.setEnabled(isEnabled);
+    }
+    
+    public boolean isHitButtonEnabled() {
+        return this.hitButton.isEnabled();
+    }
+    
+    public int getCurrentHitsLabel() {
+        return Integer.parseInt(this.currentPoints.getText());
+    }
+    
+    public void setCurrentHitsLabel(int hits) {
+        this.currentPoints.setText(Integer.toString(hits));
+    }
+    
     public void render() {
         this.drawingSurface.repaint();
     }
@@ -47,13 +74,19 @@ public class Window extends JFrame {
         JPanel actionBar = new JPanel();
         actionBar.setLayout(new GridLayout(1,5));
         
-        actionBar.add(new JTextField());
-        actionBar.add(new Label("Power in %"));
+        this.power = new JTextField();
+        this.power.setName("powerField");
+        actionBar.add(power);
+        actionBar.add(new JLabel("Power in %"));
         
-        actionBar.add(new JTextField());
-        actionBar.add(new Label("Angle in degrees"));
+        this.angle = new JTextField();
+        this.angle.setName("angleField");
+        actionBar.add(angle);
+        actionBar.add(new JLabel("Angle in degrees"));
         
-        actionBar.add(new JButton("Hit"));
+        this.hitButton = new JButton("Hit");
+        this.hitButton.setName("hitButton");
+        actionBar.add(this.hitButton);
         
         return actionBar;
     }
@@ -62,10 +95,15 @@ public class Window extends JFrame {
         JPanel statusBar = new JPanel();
         statusBar.setLayout(new GridLayout(1,3));
         
-        statusBar.add(new Label("High score: "));
-        statusBar.add(new Label("Currents strokes: "));
+        statusBar.add(new JLabel("Currents points: "));
+       
+        this.currentPoints = new JLabel("0");
+        this.currentPoints.setName("currentPoints");
+        statusBar.add(this.currentPoints);
         
-        statusBar.add(new JButton("New game"));
+        this.newGameButton = new JButton("New game");
+        this.newGameButton.setName("newGameButton");
+        statusBar.add(this.newGameButton);
         
         return statusBar;
     }
